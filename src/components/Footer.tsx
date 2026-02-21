@@ -54,7 +54,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="text-white/60 font-body text-sm text-center">
-            © {new Date().getFullYear()} Boost. All rights reserved. Crafted with creative energy.
+            © {new Date().getFullYear()} Gunjan's. All rights reserved. Crafted with creative energy.
           </div>
 
           {/* Back to Top */}
