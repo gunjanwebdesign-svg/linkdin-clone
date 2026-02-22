@@ -85,9 +85,9 @@ const ServicesSection = () => {
           }`}
         >
           <h2 className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white uppercase mb-4">
-            Case
+            Case Study
             <br />
-            <span className="text-lime-neon">Study</span>
+            <span className="text-lime-neon"></span>
           </h2>
           <div className="w-24 h-2 bg-lime-neon mx-auto"></div>
         </div>
