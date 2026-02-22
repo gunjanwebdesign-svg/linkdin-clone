@@ -4,7 +4,7 @@ import { Palette, Megaphone, Users, TrendingUp } from "lucide-react";
 const services = [
   {
     icon: Megaphone,
-    title: "Ad Campaign",
+    title: "Packaging",
     description:
       "Launching your brand into the stratosphere with captivating and customized campaigns.",
     image:
