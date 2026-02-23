@@ -81,11 +81,8 @@ const PortfolioSection = () => {
   }, []);
 
   return (
-    <section
-      id="portfolio"
-      ref={sectionRef}
-      className="relative py-32 bg-lime-neon overflow-hidden"
-    >
+    <section id="portfolio" ref={sectionRef} className="relative py-32 bg-lime-neon overflow-hidden">
+
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_#2D1B69_1px,_transparent_1px)] bg-[size:40px_40px]"></div>
@@ -93,19 +90,14 @@ const PortfolioSection = () => {
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div
-          className={`mb-20 transform transition-all duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-        >
+        <div className={`mb-20 transform transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <h2 className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-navy-deep uppercase mb-2">
             Gunjan's
             <br />
             <span className="text-purple-electric">Portfolio</span>
           </h2>
           <p className="text-navy-deep/70 text-lg font-body mt-4 max-w-2xl">
-            Check out some of our shaziest campaigns and great stories, making
-            waves. Here's our portfolio.
+            Check out some of our shaziest campaigns and great stories, making waves. Here's our portfolio.
           </p>
           <div className="w-24 h-2 bg-purple-electric mt-6"></div>
         </div>
@@ -115,60 +107,46 @@ const PortfolioSection = () => {
           {portfolioItems.map((item, index) => (
             <div
               key={index}
-              className={`group relative transform transition-all duration-700 ${
-                isVisible
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-12 opacity-0"
-              }`}
+              className={`group relative transform transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}
               style={{ transitionDelay: `${index * 100 + 300}ms` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div
-                className={`relative ${item.rotation} hover:rotate-0 transition-all duration-300 cursor-pointer`}
-              >
-                {/* Card Container */}
-                <div className="relative bg-white rounded-3xl overflow-hidden shadow-xl group-hover:shadow-[0_20px_60px_rgba(26,26,62,0.3)] transition-all duration-300">
+              <div className={`relative ${item.rotation} hover:rotate-0 transition-all duration-300`}>
+                {/* Card Container (clickable) */}
+                <div
+                  role="link"
+                  aria-label={`Open ${item.title} on Behance`}
+                  tabIndex={0}
+                  onClick={() => window.open("https://www.behance.net/gunjanweb", "_blank", "noopener,noreferrer")}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      window.open("https://www.behance.net/gunjanweb", "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                  className="relative bg-white rounded-3xl overflow-hidden shadow-xl group-hover:shadow-[0_20px_60px_rgba(26,26,62,0.3)] transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-electric/40"
+                >
+                  <span className="sr-only">Open {item.title} on Behance</span>
                   {/* Image */}
                   <div className="relative h-80 overflow-hidden">
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-60 group-hover:opacity-40 transition-opacity duration-300`}
-                    ></div>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-60 group-hover:opacity-40 transition-opacity duration-300`}></div>
+                    <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
 
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-navy-deep/0 group-hover:bg-navy-deep/70 transition-all duration-300 flex items-center justify-center">
-                      <div
-                        className={`transform ${
-                          hoveredIndex === index
-                            ? "scale-100 opacity-100"
-                            : "scale-50 opacity-0"
-                        } transition-all duration-300`}
-                      >
-                        <a
-                          href="https://www.behance.net/gunjanweb"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-lime-neon text-navy-deep p-4 rounded-full hover:scale-110 transition-transform duration-200 inline-block"
-                        >
+                      <div className={`transform ${hoveredIndex === index ? "scale-100 opacity-100" : "scale-50 opacity-0"} transition-all duration-300`}>
+                        <div className="bg-lime-neon text-navy-deep p-4 rounded-full hover:scale-110 transition-transform duration-200 inline-block">
                           <ExternalLink className="w-6 h-6" />
-                        </a>
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
                   <div className="p-6 bg-white">
-                    <div className="text-sm font-body font-semibold text-purple-electric uppercase tracking-wider mb-2">
-                      {item.category}
-                    </div>
-                    <h3 className="font-display font-black text-2xl text-navy-deep uppercase">
-                      {item.title}
-                    </h3>
+                    <div className="text-sm font-body font-semibold text-purple-electric uppercase tracking-wider mb-2">{item.category}</div>
+                    <h3 className="font-display font-black text-2xl text-navy-deep uppercase">{item.title}</h3>
                   </div>
                 </div>
 
@@ -182,17 +160,8 @@ const PortfolioSection = () => {
         </div>
 
         {/* View More Button */}
-        <div
-          className={`text-center mt-16 transform transition-all duration-700 delay-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-        >
-          <a
-            href="https://www.behance.net/gunjanweb"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative px-10 py-4 bg-navy-deep text-lime-neon font-display font-black text-lg uppercase tracking-wider hover:scale-105 transition-all duration-200 hover:shadow-[0_0_30px_rgba(26,26,62,0.3)] overflow-hidden inline-block"
-          >
+        <div className={`text-center mt-16 transform transition-all duration-700 delay-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
+          <a href="https://www.behance.net/gunjanweb" target="_blank" rel="noopener noreferrer" className="group relative px-10 py-4 bg-navy-deep text-lime-neon font-display font-black text-lg uppercase tracking-wider hover:scale-105 transition-all duration-200 hover:shadow-[0_0_30px_rgba(26,26,62,0.3)] overflow-hidden inline-block">
             <span className="relative z-10">Discover More</span>
             <div className="absolute inset-0 bg-purple-electric transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
           </a>

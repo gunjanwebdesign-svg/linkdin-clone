@@ -77,16 +77,14 @@ const AboutSection = () => {
                 : "translate-x-12 opacity-0"
             }`}
           >
-            <div className="space-y-4">
+            <div className="space-y-6">
               <h2 className="font-display font-black text-6xl md:text-7xl text-navy-deep uppercase leading-[0.9]">
-                About
-                <br />
-                Me
+                About Me
               </h2>
               <div className="w-20 h-2 bg-purple-electric"></div>
             </div>
 
-            <div className="space-y-6 text-navy-deep/80">
+            <div className="space-y-2 text-navy-deep/80">
               <p className="text-lg font-body leading-relaxed">
                 <span className="text-navy-deep font-bold">Gunjan</span>is a
                 Senior UI/UX Designer with 11+ years of experience in
@@ -107,7 +105,7 @@ const AboutSection = () => {
 
             <div className="pt-4">
               <button className="group relative px-8 py-4 bg-navy-deep text-lime-neon font-display font-black text-base uppercase tracking-wider hover:scale-105 transition-all duration-200 hover:shadow-[0_0_30px_rgba(26,26,62,0.3)] overflow-hidden">
-                <span className="relative z-10">Learn More</span>
+                <span className="relative z-10"><a href="https://www.behance.net/gunjanweb" target="blank">Learn More</a></span>
                 <div className="absolute inset-0 bg-purple-electric transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
               </button>
             </div>
