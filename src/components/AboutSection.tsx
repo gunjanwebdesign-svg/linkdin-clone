@@ -49,11 +49,10 @@ const AboutSection = () => {
           >
             <div className="relative max-w-md">
               {/* Decorative Background */}
-              <div className="absolute -top-8 -left-8 w-72 h-72 bg-purple-electric rounded-[40px] transform -rotate-6"></div>
-
+              
               {/* Main Image */}
               <div className="relative">
-                <div className="transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                <div className="transform rotate-3">
                   <img
                     src="https://i.ibb.co/d0X3m6Ym/gunjan-beach.jpg"
                     alt="About"
