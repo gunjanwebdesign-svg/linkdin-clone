@@ -140,23 +140,19 @@ const HeroSection = () => {
           >
             <div className="relative w-full max-w-md mx-auto lg:ml-auto">
               {/* Background Shape */}
-              <div className="absolute -top-8 -right-8 w-64 h-64 bg-yellow-electric rounded-full opacity-30 blur-3xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-cyan-rich rounded-full opacity-20 blur-3xl"></div>
-
-              {/* Image Container */}
-              <div className="relative bg-gradient-to-br from-yellow-electric to-pink-hot p-1 rounded-3xl transform rotate-2 hover:rotate-0 transition-transform duration-300">
-                <div className="bg-[#1a0a2e] rounded-3xl overflow-hidden">
+               {/* Image Container */}
+              <div className="relative bg-gradient-to-br ">
+                <div className="overflow-hidden">
                   <img
                     src="https://i.postimg.cc/8cvDDm7P/Gunjan-Sharma.jpg"
                     alt="Creative Designer"
-                    className="w-full h-auto object-cover rounded-3xl"
+                    className="w-full h-auto object-cover "
                   />
                 </div>
               </div>
 
               {/* Decorative Elements */}
-              <div className="absolute -top-4 -left-4 w-20 h-20 border-4 border-lime-neon rounded-full animate-pulse"></div>
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-pink-hot rounded-lg transform rotate-45"></div>
+             
             </div>
           </div>
         </div>

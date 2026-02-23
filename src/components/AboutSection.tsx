@@ -41,7 +41,7 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image Side */}
           <div
-            className={`transform transition-all duration-700 ${
+            className={`transform transition-all duration-700 flex justify-center items-center ${
               isVisible
                 ? "translate-x-0 opacity-100"
                 : "-translate-x-12 opacity-0"
@@ -53,11 +53,11 @@ const AboutSection = () => {
 
               {/* Main Image */}
               <div className="relative">
-                <div className="bg-cyan-rich p-2 rounded-[40px] transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                <div className="transform rotate-3 hover:rotate-0 transition-transform duration-300">
                   <img
                     src="https://i.ibb.co/d0X3m6Ym/gunjan-beach.jpg"
                     alt="About"
-                    className="w-full h-auto rounded-[36px] object-cover"
+                    className="w-full h-auto rounded-[40px] object-cover"
                   />
                 </div>
               </div>
