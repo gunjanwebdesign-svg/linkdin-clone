@@ -85,21 +85,9 @@ const AboutSection = () => {
 
             <div className="space-y-2 text-navy-deep/80">
               <p className="text-lg font-body leading-relaxed">
-                <span className="text-navy-deep font-bold">Gunjan</span>is a
-                Senior UI/UX Designer with 11+ years of experience in
-                user-centric design, visualization, & project management across
-                80+ web & mobile applications.
+              Senior UX/UI Designer with 11+ years of experience designing user-centric web and mobile applications across fintech, enterprise, dashboards, and SaaS products. Proven ability to translate complex business requirements into intuitive, scalable interfaces. Delivered measurable impact, including 40% increase in user retention and 45% improvement in sales. Strong collaborator with product managers, developers, and leadership teams.
               </p>
-              <p className="text-lg font-body leading-relaxed">
-                Proven ability to boost retention & sales through intuitive
-                interfaces & Agile workflows. Skilled in modern design tools
-                (Adobe XD, Figma) & technologies (Bootstrap, HTML, CS'S,
-                familiar with React, Angular), with a strong record of aligning
-                design strategy with business goals in collaboration with
-                C-suite leaders. Expert at translating business goals into
-                intuitive interfaces boosted customer retention by 40% & e
-                commerce sales by 45%.
-              </p>
+            
             </div>
 
             <div className="pt-4">
