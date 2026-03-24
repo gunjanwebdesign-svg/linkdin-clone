@@ -3,7 +3,8 @@ import { Palette, Megaphone, Users, TrendingUp } from "lucide-react";
 
 const services = [
   {
-    title: "Grain Harvest",
+    icon: Megaphone,
+    title: "Ad Campaign",
     description:
       "Launching your brand into the stratosphere with captivating and customized campaigns.",
     image:
@@ -14,7 +15,7 @@ const services = [
     icon: Palette,
     title: "Social Media Management",
     description:
-      "From crafting texts powered by captivating visuals with words of content that connect people.",
+      "From crafting texts powered by captivating visuals with words of content that connects people.",
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
     color: "from-yellow-electric to-lime-neon",
@@ -84,9 +85,9 @@ const ServicesSection = () => {
           }`}
         >
           <h2 className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white uppercase mb-4">
-            Case Study
+            Case
             <br />
-            <span className="text-lime-neon"></span>
+            <span className="text-lime-neon">Study</span>
           </h2>
           <div className="w-24 h-2 bg-lime-neon mx-auto"></div>
         </div>
