@@ -41,7 +41,7 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image Side */}
           <div
-            className={`transform transition-all duration-700 flex justify-center items-center ${
+            className={`transform transition-all duration-700 ${
               isVisible
                 ? "translate-x-0 opacity-100"
                 : "-translate-x-12 opacity-0"
@@ -49,13 +49,15 @@ const AboutSection = () => {
           >
             <div className="relative max-w-md">
               {/* Decorative Background */}
+              <div className="absolute -top-8 -left-8 w-72 h-72 bg-purple-electric rounded-[40px] transform -rotate-6"></div>
+
               {/* Main Image */}
               <div className="relative">
-                <div className="transform rotate-3">
+                <div className="bg-cyan-rich p-2 rounded-[40px] transform rotate-3 hover:rotate-0 transition-transform duration-300">
                   <img
                     src="https://i.ibb.co/d0X3m6Ym/gunjan-beach.jpg"
                     alt="About"
-                    className="w-full h-auto rounded-[40px] object-cover"
+                    className="w-full h-auto rounded-[36px] object-cover"
                   />
                 </div>
               </div>
@@ -75,22 +77,37 @@ const AboutSection = () => {
                 : "translate-x-12 opacity-0"
             }`}
           >
-            <div className="space-y-6">
+            <div className="space-y-4">
               <h2 className="font-display font-black text-6xl md:text-7xl text-navy-deep uppercase leading-[0.9]">
-                About Me
+                About
+                <br />
+                Me
               </h2>
               <div className="w-20 h-2 bg-purple-electric"></div>
             </div>
 
-            <div className="space-y-2 text-navy-deep/80">
+            <div className="space-y-6 text-navy-deep/80">
               <p className="text-lg font-body leading-relaxed">
-              Senior UX/UI Designer with 11+ years of experience designing user-centric web and mobile applications across fintech, enterprise, dashboards, and SaaS products. Proven ability to translate complex business requirements into intuitive, scalable interfaces. Delivered measurable impact, including 40% increase in user retention and 45% improvement in sales. Strong collaborator with product managers, developers, and leadership teams.
+                <span className="text-navy-deep font-bold">Gunjan</span>is a
+                Senior UI/UX Designer with 11+ years of experience in
+                user-centric design, visualization, & project management across
+                80+ web & mobile applications.
+              </p>
+              <p className="text-lg font-body leading-relaxed">
+                Proven ability to boost retention & sales through intuitive
+                interfaces & Agile workflows. Skilled in modern design tools
+                (Adobe XD, Figma) & technologies (Bootstrap, HTML, CS'S,
+                familiar with React, Angular), with a strong record of aligning
+                design strategy with business goals in collaboration with
+                C-suite leaders. Expert at translating business goals into
+                intuitive interfaces boosted customer retention by 40% & e
+                commerce sales by 45%.
               </p>
             </div>
 
             <div className="pt-4">
               <button className="group relative px-8 py-4 bg-navy-deep text-lime-neon font-display font-black text-base uppercase tracking-wider hover:scale-105 transition-all duration-200 hover:shadow-[0_0_30px_rgba(26,26,62,0.3)] overflow-hidden">
-                <span className="relative z-10"><a href="https://www.behance.net/gunjanweb" target="blank">Learn More</a></span>
+                <span className="relative z-10">Learn More</span>
                 <div className="absolute inset-0 bg-purple-electric transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
               </button>
             </div>
