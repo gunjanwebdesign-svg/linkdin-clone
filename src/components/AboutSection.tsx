@@ -85,7 +85,7 @@ const AboutSection = () => {
 
             <div className="space-y-2 text-navy-deep/80">
               <p className="text-lg font-body leading-relaxed">
-              Senior UX/UI Designer with 11+ years of experience designing user-centric web and mobile applications across fintech enterprise, dashboards, and SaaS products. Proven ability to translate complex business requirements into intuitive, scalable interfaces. Delivered measurable impact, including 40% increase in user retention and 45% improvement in sales. Strong collaborator with product managers, developers, and leadership teams.
+              Senior UX/UI Designer with 11+ years of experience designing user-centric web and mobile applications across fintech, enterprise, dashboards, and SaaS products. Proven ability to translate complex business requirements into intuitive, scalable interfaces. Delivered measurable impact, including 40% increase in user retention and 45% improvement in sales. Strong collaborator with product managers, developers, and leadership teams.
               </p>
             
             </div>
