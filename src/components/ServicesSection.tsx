@@ -3,22 +3,22 @@ import { Palette, Megaphone, Users, TrendingUp, X } from "lucide-react";
 
 const services = [
   {
-    icon: Megaphone,
-    title: "Ad Campaign",
+    
+    title: "Grain Harvest",
     description:
-      "Launching your brand into the stratosphere with captivating and customized campaigns.",
+      "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
     image:
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80",
+      "https://i.postimg.cc/qqV3vjLX/screencapture-behance-net-gallery-242320901-Basmati-Rice-Pouch-Packaging-Design-2026-02-07-13-28-56.png",
     color: "from-pink-hot to-purple-electric",
   },
   {
     icon: Palette,
     title: "Social Media Management",
     description:
-      "From crafting texts powered by captivating visuals with words of content that connects people.",
+      "From crafting texts powered by captivating visuals with words of content that connect people.",
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
-    color: "from-yellow-electric to-lime-neon",
+   
   },
   {
     icon: Users,
