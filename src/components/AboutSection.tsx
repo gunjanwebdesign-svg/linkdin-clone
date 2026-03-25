@@ -88,7 +88,7 @@ const AboutSection = () => {
 
             <div className="space-y-6 text-navy-deep/80">
               <p className="text-lg font-body leading-relaxed">
-                <span className="text-navy-deep font-bold">Gunjan</span>is a
+                <span className="text-navy-deep font-bold">Gunjan</span> is a
                 Senior UI/UX Designer with 11+ years of experience in
                 user-centric design, visualization, & project management across
                 80+ web & mobile applications.
@@ -96,18 +96,22 @@ const AboutSection = () => {
               <p className="text-lg font-body leading-relaxed">
                 Proven ability to boost retention & sales through intuitive
                 interfaces & Agile workflows. Skilled in modern design tools
-                (Adobe XD, Figma) & technologies (Bootstrap, HTML, CS'S,
+                (Adobe XD, Figma) & technologies (Bootstrap, HTML, CSS,
                 familiar with React, Angular), with a strong record of aligning
                 design strategy with business goals in collaboration with
                 C-suite leaders. Expert at translating business goals into
-                intuitive interfaces boosted customer retention by 40% & e
-                commerce sales by 45%.
+                intuitive interfaces boosted customer retention by 40% &
+                e-commerce sales by 45%.
               </p>
             </div>
 
             <div className="pt-4">
               <button className="group relative px-8 py-4 bg-navy-deep text-lime-neon font-display font-black text-base uppercase tracking-wider hover:scale-105 transition-all duration-200 hover:shadow-[0_0_30px_rgba(26,26,62,0.3)] overflow-hidden">
-                <span className="relative z-10">Learn More</span>
+                <span className="relative z-10">
+                  <a href="https://www.behance.net/gunjanweb" target="_blank" rel="noopener noreferrer">
+                    Learn More
+                  </a>
+                </span>
                 <div className="absolute inset-0 bg-purple-electric transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
               </button>
             </div>
