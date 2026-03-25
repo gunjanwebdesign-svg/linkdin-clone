@@ -43,6 +43,7 @@ const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
+  const [zoomIn, setZoomIn] = useState(false); // For animation control
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Intersection Observer for animation
@@ -69,19 +70,24 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Handle image click to open modal
+  // Handle image click to open modal with zoom effect
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
     setIsModalOpen(true);
+    setZoomIn(true); // trigger zoom in
   };
 
-  // Close modal
+  // Close modal with zoom out effect
   const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage("");
+    setZoomIn(false); // trigger zoom out
+    // Delay closing to allow animation
+    setTimeout(() => {
+      setIsModalOpen(false);
+      setSelectedImage("");
+    }, 300); // match with transition duration
   };
 
-  // Close modal on Escape key
+  // Handle Escape key to close modal
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -173,7 +179,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Modal Popup for Full Image */}
+      {/* Modal Popup for Full Image with zoom animation */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
@@ -194,19 +200,18 @@ const ServicesSection = () => {
               <X size={32} />
             </button>
 
-            {/* Full Size Image without fixed height/width */}
-            <div className="flex justify-center items-center w-full h-full overflow-hidden">
+            {/* Full Size Image with zoom in/out effect */}
+            <div
+              className={`flex justify-center items-center w-full h-full overflow-hidden transition-transform duration-300 ${
+                zoomIn ? "scale-100" : "scale-95"
+              }`}
+            >
               <img
                 src={selectedImage}
                 alt="Enlarged view"
                 className="max-w-full max-h-full object-contain"
               />
             </div>
-
-            {/* Optional caption */}
-            {/* <p className="text-center text-white text-lg font-display font-bold mt-4 uppercase">
-              {selectedTitle}
-            </p> */}
 
             {/* Hint text */}
             <p className="text-center text-white/50 text-sm mt-2">
