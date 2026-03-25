@@ -1,15 +1,5 @@
-To make the popup image open with a default size (for example, a specific width and height) and still have smooth zoom-in and zoom-out animations, you can set initial scale and size styles. Here's how you can modify the code:
-
-### Updated approach:
-- Set the initial size (width and height) of the image container.
-- Use scale for zoom-in and zoom-out animations.
-- Apply CSS classes or inline styles for the default size.
-
-Here's the updated code snippet:
-
-```jsx
 import { useEffect, useRef, useState } from "react";
-import { Palette, Megaphone, Users, TrendingUp, X } from "lucide-react";
+import { Palette, Users, TrendingUp, X } from "lucide-react";
 
 const services = [
   {
@@ -53,7 +43,7 @@ const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const [zoomIn, setZoomIn] = useState(true); // default open with zoom-in
+  const [zoomIn, setZoomIn] = useState(true);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Intersection Observer for animation
@@ -68,11 +58,9 @@ const ServicesSection = () => {
       },
       { threshold: 0.2 }
     );
-
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
@@ -80,34 +68,30 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Handle image click to open modal with zoom-in
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
     setIsModalOpen(true);
-    setZoomIn(true); // ensure zoom-in animation on open
+    setZoomIn(true);
   };
 
-  // Close modal with zoom-out effect
   const closeModal = () => {
-    setZoomIn(false); // trigger zoom out
+    setZoomIn(false);
     setTimeout(() => {
       setIsModalOpen(false);
       setSelectedImage("");
-    }, 300); // match with transition duration
+    }, 300);
   };
 
-  // Handle Escape key to close modal
+  // Close modal with ESC key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeModal();
       }
     };
-
     if (isModalOpen) {
       document.addEventListener("keydown", handleEscape);
     }
-
     return () => {
       document.removeEventListener("keydown", handleEscape);
     };
@@ -211,14 +195,13 @@ const ServicesSection = () => {
 
             {/* Full Size Image with default size and zoom animation */}
             <div
-              className={`flex justify-center items-center w-full h-full overflow-hidden transition-transform duration-300 ${
-                zoomIn ? "scale-100" : "scale-95"
-              }`}
+              className={`flex justify-center items-center w-full h-full overflow-hidden transition-transform duration-300`}
               style={{
-                width: "auto", // default size
+                width: "auto",
                 height: "auto",
-                maxWidth: "80vw", // optional: limit max size
+                maxWidth: "80vw",
                 maxHeight: "80vh",
+                transform: zoomIn ? "scale(1)" : "scale(0.95)",
               }}
             >
               <img
@@ -240,12 +223,3 @@ const ServicesSection = () => {
 };
 
 export default ServicesSection;
-```
-
-### Key points:
-- The image container now has inline styles (`width: auto`, `height: auto`, `maxWidth`, `maxHeight`) to set a default size.
-- The initial zoom state is `scale-100` (full size).
-- When closing, it scales down to `scale-95` for a smooth zoom-out effect.
-- Adjust `maxWidth` and `maxHeight` as needed for your preferred default size.
-
-Would you like me to fine-tune the default size further?
