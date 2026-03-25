@@ -3,13 +3,12 @@ import { Palette, Megaphone, Users, TrendingUp, X } from "lucide-react";
 
 const services = [
   {
-     icon: Palette,
+    icon: Palette,
     title: "Grain Harvest",
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
     image:
       "https://i.postimg.cc/qqV3vjLX/screencapture-behance-net-gallery-242320901-Basmati-Rice-Pouch-Packaging-Design-2026-02-07-13-28-56.png",
-    
   },
   {
     icon: Palette,
@@ -18,7 +17,7 @@ const services = [
       "From crafting texts powered by captivating visuals with words of content that connect people.",
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
-   color: "from-pink-hot to-purple-electric",
+    color: "from-pink-hot to-purple-electric",
   },
   {
     icon: Users,
@@ -44,9 +43,9 @@ const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const [selectedTitle, setSelectedTitle] = useState("");
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  // Intersection Observer for animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -56,7 +55,7 @@ const ServicesSection = () => {
           }
         });
       },
-      { threshold: 0.2 },
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -70,16 +69,16 @@ const ServicesSection = () => {
     };
   }, []);
 
-  const handleImageClick = (image: string, title: string) => {
+  // Handle image click to open modal
+  const handleImageClick = (image: string) => {
     setSelectedImage(image);
-    setSelectedTitle(title);
     setIsModalOpen(true);
   };
 
+  // Close modal
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedImage("");
-    setSelectedTitle("");
   };
 
   // Close modal on Escape key
@@ -139,9 +138,9 @@ const ServicesSection = () => {
                 style={{ transitionDelay: `${index * 100 + 300}ms` }}
               >
                 {/* Image Background - CLICKABLE */}
-                <div 
+                <div
                   className="relative h-64 overflow-hidden cursor-pointer"
-                  onClick={() => handleImageClick(service.image, service.title)}
+                  onClick={() => handleImageClick(service.image)}
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-80`}
@@ -174,11 +173,13 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Modal Popup */}
+      {/* Modal Popup for Full Image */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
           onClick={closeModal}
+          role="dialog"
+          aria-modal="true"
         >
           <div
             className="relative max-w-4xl max-h-[90vh] w-full"
@@ -193,23 +194,23 @@ const ServicesSection = () => {
               <X size={32} />
             </button>
 
-            {/* Image Container */}
-            <div className="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-lime-neon/30">
+            {/* Full Size Image */}
+            <div className="flex justify-center items-center w-full h-full overflow-hidden">
               <img
                 src={selectedImage}
-                alt={selectedTitle}
-                className="w-full h-auto object-cover"
+                alt="Enlarged view"
+                className="max-w-full max-h-full object-contain"
               />
             </div>
 
-            {/* Title under image */}
-            <p className="text-center text-white text-lg font-display font-bold mt-4 uppercase">
+            {/* Optional: Add a caption or title below the image */}
+            {/* <p className="text-center text-white text-lg font-display font-bold mt-4 uppercase">
               {selectedTitle}
-            </p>
+            </p> */}
 
             {/* Navigation hint */}
             <p className="text-center text-white/50 text-sm mt-2">
-              Press ESC to close
+              Press ESC or click outside to close
             </p>
           </div>
         </div>
