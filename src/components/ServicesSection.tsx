@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Palette, Megaphone, Users, TrendingUp } from "lucide-react";
+import { Palette, Megaphone, Users, TrendingUp, X } from "lucide-react";
 
 const services = [
   {
@@ -42,6 +42,9 @@ const services = [
 
 const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedTitle, setSelectedTitle] = useState("");
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -66,6 +69,35 @@ const ServicesSection = () => {
       }
     };
   }, []);
+
+  const handleImageClick = (image: string, title: string) => {
+    setSelectedImage(image);
+    setSelectedTitle(title);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImage("");
+    setSelectedTitle("");
+  };
+
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("keydown", handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [isModalOpen]);
 
   return (
     <section
@@ -106,18 +138,19 @@ const ServicesSection = () => {
                 }`}
                 style={{ transitionDelay: `${index * 100 + 300}ms` }}
               >
-                {/* Image Background */}
-                <div className="relative h-64 overflow-hidden">
+                {/* Image Background - CLICKABLE */}
+                <div 
+                  className="relative h-64 overflow-hidden cursor-pointer"
+                  onClick={() => handleImageClick(service.image, service.title)}
+                >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-80`}
                   ></div>
-                  <a href="https://www.behance.net/gunjanweb" target="_blank">
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </a>
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-500"
+                  />
 
                   {/* Icon */}
                   <div className="absolute top-6 right-6 w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
@@ -140,6 +173,47 @@ const ServicesSection = () => {
           })}
         </div>
       </div>
+
+      {/* Modal Popup */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="relative max-w-4xl max-h-[90vh] w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute -top-12 right-0 text-white hover:text-lime-neon transition-colors duration-300 z-50"
+              aria-label="Close modal"
+            >
+              <X size={32} />
+            </button>
+
+            {/* Image Container */}
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl overflow-hidden border border-lime-neon/30">
+              <img
+                src={selectedImage}
+                alt={selectedTitle}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+
+            {/* Title under image */}
+            <p className="text-center text-white text-lg font-display font-bold mt-4 uppercase">
+              {selectedTitle}
+            </p>
+
+            {/* Navigation hint */}
+            <p className="text-center text-white/50 text-sm mt-2">
+              Press ESC to close
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
