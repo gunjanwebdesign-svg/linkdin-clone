@@ -8,7 +8,7 @@ const services = [
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
     image:
-      "https://postimg.cc/9RbMxPsr",
+      "https://i.postimg.cc/qqV3vjLX/screencapture-behance-net-gallery-242320901-Basmati-Rice-Pouch-Packaging-Design-2026-02-07-13-28-56.png",
     
   },
   {
