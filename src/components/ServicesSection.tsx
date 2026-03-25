@@ -18,7 +18,7 @@ const services = [
       "From crafting texts powered by captivating visuals with words of content that connect people.",
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
-   
+   color: "from-pink-hot to-purple-electric",
   },
   {
     icon: Users,
