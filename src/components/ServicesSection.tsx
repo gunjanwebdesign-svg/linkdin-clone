@@ -1,3 +1,13 @@
+To make the popup image open with a default size (for example, a specific width and height) and still have smooth zoom-in and zoom-out animations, you can set initial scale and size styles. Here's how you can modify the code:
+
+### Updated approach:
+- Set the initial size (width and height) of the image container.
+- Use scale for zoom-in and zoom-out animations.
+- Apply CSS classes or inline styles for the default size.
+
+Here's the updated code snippet:
+
+```jsx
 import { useEffect, useRef, useState } from "react";
 import { Palette, Megaphone, Users, TrendingUp, X } from "lucide-react";
 
@@ -178,7 +188,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Modal Popup for Full Image with zoom animation */}
+      {/* Modal Popup for Full Image with default size and zoom animation */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
@@ -199,11 +209,17 @@ const ServicesSection = () => {
               <X size={32} />
             </button>
 
-            {/* Full Size Image with zoom in/out effect */}
+            {/* Full Size Image with default size and zoom animation */}
             <div
               className={`flex justify-center items-center w-full h-full overflow-hidden transition-transform duration-300 ${
                 zoomIn ? "scale-100" : "scale-95"
               }`}
+              style={{
+                width: "auto", // default size
+                height: "auto",
+                maxWidth: "80vw", // optional: limit max size
+                maxHeight: "80vh",
+              }}
             >
               <img
                 src={selectedImage}
@@ -224,3 +240,12 @@ const ServicesSection = () => {
 };
 
 export default ServicesSection;
+```
+
+### Key points:
+- The image container now has inline styles (`width: auto`, `height: auto`, `maxWidth`, `maxHeight`) to set a default size.
+- The initial zoom state is `scale-100` (full size).
+- When closing, it scales down to `scale-95` for a smooth zoom-out effect.
+- Adjust `maxWidth` and `maxHeight` as needed for your preferred default size.
+
+Would you like me to fine-tune the default size further?
