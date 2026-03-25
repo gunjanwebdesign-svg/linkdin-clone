@@ -43,7 +43,7 @@ const ServicesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
-  const [zoomIn, setZoomIn] = useState(false); // For animation control
+  const [zoomIn, setZoomIn] = useState(true); // default open with zoom-in
   const sectionRef = useRef<HTMLDivElement>(null);
 
   // Intersection Observer for animation
@@ -70,17 +70,16 @@ const ServicesSection = () => {
     };
   }, []);
 
-  // Handle image click to open modal with zoom effect
+  // Handle image click to open modal with zoom-in
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
     setIsModalOpen(true);
-    setZoomIn(true); // trigger zoom in
+    setZoomIn(true); // ensure zoom-in animation on open
   };
 
-  // Close modal with zoom out effect
+  // Close modal with zoom-out effect
   const closeModal = () => {
     setZoomIn(false); // trigger zoom out
-    // Delay closing to allow animation
     setTimeout(() => {
       setIsModalOpen(false);
       setSelectedImage("");
