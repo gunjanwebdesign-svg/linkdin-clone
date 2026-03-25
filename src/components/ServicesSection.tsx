@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { X } from "react-feather";
 
-// Example icons, replace with your actual icon imports
+// Dummy icon components if you haven't imported real ones
 const Palette = () => <div style={{ width: 32, height: 32, backgroundColor: 'white' }} />;
 const ChatCircle = () => <div style={{ width: 32, height: 32, backgroundColor: 'white' }} />;
 const MonitorSpeaker = () => <div style={{ width: 32, height: 32, backgroundColor: 'white' }} />;
@@ -14,7 +14,7 @@ const services = [
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
     image: "https://i.postimg.cc/qqV3vjLX/screencapture-behance-net-gallery-242320901-Basmati-Rice-Pouch-Packaging-Design-2026-02-07-13-28-56.png",
-    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+1", // Placeholder thumbnail
+    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+1",
   },
   {
     icon: ChatCircle,
@@ -22,7 +22,7 @@ const services = [
     description:
       "From crafting texts powered by captivating visuals with words of content that connect people.",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
-    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+2", // Placeholder thumbnail
+    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+2",
   },
   {
     icon: MonitorSpeaker,
@@ -30,7 +30,7 @@ const services = [
     description:
       "Create captivating short videos with an eye-catching visual design, engaging sound, and background music.",
     image: "https://images.unsplash.com/photo-1621055233402-3e8bf9528a27?w=600&q=80",
-    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+3", // Placeholder thumbnail
+    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+3",
   },
   {
     icon: UserPlus,
@@ -38,7 +38,7 @@ const services = [
     description:
       "Modern websites with a perfect mix of beauty and brains to maximize your business potential.",
     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80",
-    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+4", // Placeholder thumbnail
+    thumbnail: "https://via.placeholder.com/300x200.png?text=Thumbnail+4",
   },
 ];
 
@@ -47,7 +47,6 @@ const ServicesSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Handle scroll-based fade-in animation
   useEffect(() => {
     const handleScroll = () => {
       const section = document.getElementById("services");
@@ -112,7 +111,7 @@ const ServicesSection = () => {
                   className={`absolute inset-0 bg-gradient-to-br from-lime-400 to-green-400 opacity-80`}
                 ></div>
                 <img
-                  src={service.thumbnail} // Use thumbnail URL here
+                  src={service.thumbnail}
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -158,7 +157,7 @@ const ServicesSection = () => {
               <X size={32} />
             </button>
 
-            {/* Full Image (no width/height restrictions) */}
+            {/* Full Image */}
             <div className="flex justify-center items-center w-full h-full overflow-hidden">
               <img
                 src={selectedImage}
