@@ -3,13 +3,13 @@ import { Palette, Megaphone, Users, TrendingUp, X } from "lucide-react";
 
 const services = [
   {
-     icon: Palette,
+    
     title: "Grain Harvest",
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
     image:
-      "https://i.postimg.cc/qqV3vjLX/screencapture-behance-net-gallery-242320901-Basmati-Rice-Pouch-Packaging-Design-2026-02-07-13-28-56.png",
-    color: "from-pink-hot to-purple-electric",
+      "https://postimg.cc/9RbMxPsr",
+    
   },
   {
     icon: Palette,
