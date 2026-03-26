@@ -7,8 +7,7 @@ const services = [
     title: "Grain Harvest",
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
-    image:
-      "https://iili.io/qsU45GV.png",
+    image: "https://iili.io/qsU45GV.png",
   },
   {
     icon: Palette,
@@ -172,7 +171,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Modal Popup for Full Image with default size and zoom animation */}
+      {/* Modal Popup for Full Image with full width and height, zoom animation */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
@@ -180,42 +179,35 @@ const ServicesSection = () => {
           role="dialog"
           aria-modal="true"
         >
-          <div
-            className="relative max-w-4xl max-h-[90vh] w-full"
-            onClick={(e) => e.stopPropagation()}
+          {/* Close Button */}
+          <button
+            onClick={closeModal}
+            className="absolute -top-12 right-0 text-white hover:text-lime-neon transition-colors duration-300 z-50"
+            aria-label="Close modal"
           >
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute -top-12 right-0 text-white hover:text-lime-neon transition-colors duration-300 z-50"
-              aria-label="Close modal"
-            >
-              <X size={32} />
-            </button>
+            <X size={32} />
+          </button>
 
-            {/* Full Size Image with default size and zoom animation */}
+          {/* Fullscreen image with zoom animation */}
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center">
             <div
-              className={`flex justify-center items-center w-full h-full overflow-hidden transition-transform duration-300`}
+              className={`w-full h-full transition-transform duration-300`}
               style={{
-                width: "auto",
-                height: "auto",
-                maxWidth: "80vw",
-                maxHeight: "80vh",
                 transform: zoomIn ? "scale(1)" : "scale(0.95)",
               }}
             >
               <img
                 src={selectedImage}
                 alt="Enlarged view"
-                className="max-w-full max-h-full object-contain"
+                className="w-full h-full object-contain"
               />
             </div>
-
-            {/* Hint text */}
-            <p className="text-center text-white/50 text-sm mt-2">
-              Press ESC or click outside to close
-            </p>
           </div>
+
+          {/* Hint text */}
+          <p className="absolute bottom-4 w-full text-center text-white/50 text-sm">
+            Press ESC or click outside to close
+          </p>
         </div>
       )}
     </section>
