@@ -146,7 +146,7 @@ const ServicesSection = () => {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-500"
+                  /* className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-500" */
                   />
 
                   {/* Icon */}
