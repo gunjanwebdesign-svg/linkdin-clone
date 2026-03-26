@@ -15,7 +15,7 @@ const services = [
     description:
       "Platform that Simplifies Financial Control",
     image:
-      "https://freeimage.host/i/qst6fyb",
+      "https://iili.io/qst6fyb.png",
   
   },
   {
