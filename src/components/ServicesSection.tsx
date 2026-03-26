@@ -3,7 +3,7 @@ import { Palette, Users, TrendingUp, X } from "lucide-react";
 
 const services = [
   {
-   
+    icon: Palette,
     title: "Grain Harvest",
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
@@ -115,7 +115,7 @@ const ServicesSection = () => {
         >
           <h2 className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white uppercase mb-4">
             Case
-            <br />
+           
             <span className="text-lime-neon">Study</span>
           </h2>
           <div className="w-24 h-2 bg-lime-neon mx-auto"></div>
