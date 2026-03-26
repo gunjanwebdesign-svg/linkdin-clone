@@ -191,13 +191,14 @@ const ServicesSection = () => {
           </button>
 
           {/* Fullscreen image with zoom animation and scrollbars for actual size */}
-          <div className="absolute inset-0 flex items-center justify-center overflow-auto p-4">
+          <div className="absolute inset-0 items-center justify-center overflow-auto p-4">
             <img
               src={selectedImage}
               alt="Enlarged view"
               className="max-w-none max-h-none"
               style={{
                 display: "block",
+                margin: "auto".
               }}
             />
           </div>
