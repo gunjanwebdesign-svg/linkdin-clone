@@ -8,6 +8,7 @@ const services = [
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
     image: "https://iili.io/qsU45GV.png",
+    link: "https://example.com/large-image-1", // new link
   },
   {
     icon: Palette,
@@ -17,6 +18,7 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80",
     color: "from-pink-hot to-purple-electric",
+    link: "https://example.com/large-image-2",
   },
   {
     icon: Users,
@@ -26,6 +28,7 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
     color: "from-cyan-rich to-purple-electric",
+    link: "https://example.com/large-image-3",
   },
   {
     icon: TrendingUp,
@@ -35,6 +38,7 @@ const services = [
     image:
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
     color: "from-lime-neon to-cyan-rich",
+    link: "https://example.com/large-image-4",
   },
 ];
 
@@ -135,10 +139,16 @@ const ServicesSection = () => {
                 }`}
                 style={{ transitionDelay: `${index * 100 + 300}ms` }}
               >
-                {/* Image Background - CLICKABLE */}
-                <div
-                  className="relative h-64 overflow-hidden cursor-pointer"
-                  onClick={() => handleImageClick(service.image)}
+                {/* Link wrapping the image */}
+                <a
+                  href={service.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative h-64 overflow-hidden"
+                  onClick={(e) => {
+                    e.preventDefault(); // prevent default link behavior
+                    handleImageClick(service.image);
+                  }}
                 >
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-80`}
@@ -153,7 +163,7 @@ const ServicesSection = () => {
                   <div className="absolute top-6 right-6 w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                </div>
+                </a>
                 {/* Content */}
                 <div className="p-8 space-y-4">
                   <h3 className="font-display font-black text-3xl text-white uppercase">
@@ -171,11 +181,13 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Modal Popup for Full Image with full width and height, zoom animation */}
+      {/* Modal Popup for full image with zoom animation */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-          onClick={closeModal}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
           role="dialog"
           aria-modal="true"
         >
@@ -191,7 +203,7 @@ const ServicesSection = () => {
           {/* Fullscreen image with zoom animation */}
           <div className="absolute inset-0 w-full h-full flex items-center justify-center">
             <div
-              className={`w-full h-full transition-transform duration-300`}
+              className={`transition-transform duration-300`}
               style={{
                 transform: zoomIn ? "scale(1)" : "scale(0.95)",
               }}
@@ -199,7 +211,13 @@ const ServicesSection = () => {
               <img
                 src={selectedImage}
                 alt="Enlarged view"
-               
+                style={{
+                  maxWidth: "90%",
+                  maxHeight: "90%",
+                  width: "auto",
+                  height: "auto",
+                }}
+                className="object-contain"
               />
             </div>
           </div>
