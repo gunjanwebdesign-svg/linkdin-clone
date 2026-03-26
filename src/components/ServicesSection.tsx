@@ -3,7 +3,6 @@ import { X } from "react-feather";
 
 function ImageModal({ isModalOpen, closeModal, selectedImage }) {
   const modalRef = useRef(null);
-  const [zoomIn, setZoomIn] = useState(true);
 
   // Handle click outside to close modal
   const handleOutsideClick = (e) => {
@@ -12,16 +11,18 @@ function ImageModal({ isModalOpen, closeModal, selectedImage }) {
     }
   };
 
-  // Optional: Add ESC key to close modal
+  // Add ESC key to close modal
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         closeModal();
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
+    if (isModalOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [closeModal]);
+  }, [isModalOpen, closeModal]);
 
   if (!isModalOpen) return null;
 
@@ -72,23 +73,25 @@ function ImageModal({ isModalOpen, closeModal, selectedImage }) {
           borderRadius: "8px",
         }}
       >
-        <div
-          style={{
-            transition: "transform 0.3s",
-            transform: zoomIn ? "scale(1)" : "scale(0.95)",
-          }}
-        >
-          <img
-            src={selectedImage}
-            alt="Enlarged"
-            style={{ display: "block" }} // Actual size
-            onLoad={() => setZoomIn(true)} // Optional: animate zoom on load
-          />
-        </div>
+        <img
+          src={selectedImage}
+          alt="Enlarged"
+          style={{ display: "block" }} // Show at actual size
+        />
       </div>
 
       {/* Hint text */}
-      <p className="absolute bottom-4 w-full text-center text-white/50 text-sm">
+      <p
+        style={{
+          position: "absolute",
+          bottom: "4px",
+          width: "100%",
+          textAlign: "center",
+          color: "white",
+          opacity: 0.5,
+          fontSize: "0.9rem",
+        }}
+      >
         Press ESC or click outside to close
       </p>
     </div>
@@ -110,7 +113,7 @@ export default function App() {
   };
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       {/* Example thumbnail */}
       <img
         src="https://via.placeholder.com/600x400"
