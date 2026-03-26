@@ -190,20 +190,16 @@ const ServicesSection = () => {
             <X size={32} />
           </button>
 
-          {/* Fullscreen image with zoom animation */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-            <div
-              className={`w-full h-full transition-transform duration-300`}
+          {/* Fullscreen image with zoom animation and scrollbars for actual size */}
+          <div className="absolute inset-0 flex items-center justify-center overflow-auto p-4">
+            <img
+              src={selectedImage}
+              alt="Enlarged view"
+              className="max-w-none max-h-none"
               style={{
-                transform: zoomIn ? "scale(1)" : "scale(0.95)",
+                display: "block",
               }}
-            >
-              <img
-                src={selectedImage}
-                alt="Enlarged view"
-                className="w-full h-full object-contain"
-              />
-            </div>
+            />
           </div>
 
           {/* Hint text */}
