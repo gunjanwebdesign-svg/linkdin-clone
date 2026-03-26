@@ -114,9 +114,7 @@ const ServicesSection = () => {
           }`}
         >
           <h2 className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white uppercase mb-4">
-            Case
-            <br />
-            <span className="text-lime-neon">Study</span>
+            Case<span className="text-lime-neon">Study</span>
           </h2>
           <div className="w-24 h-2 bg-lime-neon mx-auto"></div>
         </div>
@@ -146,7 +144,7 @@ const ServicesSection = () => {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-500"
+                  
                   />
 
                   {/* Icon */}
