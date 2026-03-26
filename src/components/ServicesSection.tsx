@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Palette, Users, TrendingUp, X } from "lucide-react";
 
 const services = [
@@ -8,7 +8,7 @@ const services = [
     description:
       "GrainHarvest is a Premium Basmati rice brand offering high-quality, naturally aged rice for modern households.",
     image: "https://iili.io/qsU45GV.png",
-    link: "https://example.com/large-image-1", // new link
+    link: "https://example.com/large-image-1", // link to open when clicking the card
   },
   {
     icon: Palette,
@@ -42,41 +42,20 @@ const services = [
   },
 ];
 
-const ServicesSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
+function ServicesSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [zoomIn, setZoomIn] = useState(true);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef(null);
 
-  // Intersection Observer for animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  const handleImageClick = (image: string) => {
+  // Handle clicking on the card image/link
+  const handleImageClick = (image) => {
     setSelectedImage(image);
     setIsModalOpen(true);
     setZoomIn(true);
   };
 
+  // Close modal with animation
   const closeModal = () => {
     setZoomIn(false);
     setTimeout(() => {
@@ -85,9 +64,9 @@ const ServicesSection = () => {
     }, 300);
   };
 
-  // Close modal with ESC key
+  // Close modal on ESC key press
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscape = (e) => {
       if (e.key === "Escape") {
         closeModal();
       }
@@ -100,136 +79,170 @@ const ServicesSection = () => {
     };
   }, [isModalOpen]);
 
+  // Close modal when clicking outside the image
+  const handleOutsideClick = (e) => {
+    if (modalRef.current && e.target === modalRef.current) {
+      closeModal();
+    }
+  };
+
   return (
-    <section
-      id="services"
-      ref={sectionRef}
-      className="relative py-32 bg-purple-deep noise-texture gradient-mesh overflow-hidden"
-    >
+    <section style={{ padding: "4rem 0", position: "relative" }}>
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5 bg-[#281894]">
-        <div className="absolute top-0 left-0 w-full h-full bg-[size:60px_60px] bg-[position:0_0,_30px_30px] bg-[#281894] opacity-[100px] flex"></div>
-      </div>
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div style={{ position: "absolute", inset: 0, opacity: 0.05, backgroundColor: "#281894" }}></div>
+      
+      {/* Content Container */}
+      <div style={{ position: "relative", maxWidth: "1400px", margin: "0 auto", padding: "0 1.5rem" }}>
         {/* Section Header */}
-        <div
-          className={`text-center mb-20 transform transition-all duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-        >
-          <h2 className="font-display font-black text-6xl md:text-7xl lg:text-8xl text-white uppercase mb-4">
-            Case
-            <br />
-            <span className="text-lime-neon">Study</span>
+        <div style={{ textAlign: "center", marginBottom: "5rem" }}>
+          <h2 style={{ fontSize: "4rem", fontWeight: "900", color: "white", textTransform: "uppercase", marginBottom: "1rem" }}>
+            Case<br /> <span style={{ color: "#00FFA3" }}>Study</span>
           </h2>
-          <div className="w-24 h-2 bg-lime-neon mx-auto"></div>
+          <div style={{ width: "6rem", height: "0.25rem", margin: "0 auto", backgroundColor: "#00FFA3" }}></div>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "2rem", maxWidth: "100%", margin: "0 auto" }}>
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
                 key={index}
-                className={`group relative bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(204,255,0,0.3)] transition-all duration-300 transform ${
-                  isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: `${index * 100 + 300}ms` }}
+                style={{
+                  position: "relative",
+                  background: "rgba(255,255,255,0.05)",
+                  backdropFilter: "blur(10px)",
+                  borderRadius: "1.5rem",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                  transition: "transform 0.3s, box-shadow 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow = "0 20px 60px rgba(204,255,0,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
                 {/* Link wrapping the image */}
                 <a
                   href={service.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative h-64 overflow-hidden"
+                  style={{ display: "block", height: "100%", textDecoration: "none" }}
                   onClick={(e) => {
-                    e.preventDefault(); // prevent default link behavior
+                    e.preventDefault();
                     handleImageClick(service.image);
                   }}
                 >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-80`}
-                  ></div>
+                  <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to bottom right, ${service.color || 'from-pink-hot to-purple-electric'})`, opacity: 0.8 }}></div>
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover mix-blend-overlay group-hover:scale-110 transition-transform duration-500"
+                    style={{
+                      width: "100%",
+                      height: "16rem",
+                      objectFit: "cover",
+                      display: "block",
+                      transition: "transform 0.5s",
+                    }}
                   />
 
                   {/* Icon */}
-                  <div className="absolute top-6 right-6 w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                    <Icon className="w-8 h-8 text-white" />
+                  <div style={{
+                    position: "absolute",
+                    top: "1.5rem",
+                    right: "1.5rem",
+                    width: "4rem",
+                    height: "4rem",
+                    background: "rgba(255,255,255,0.2)",
+                    borderRadius: "1rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backdropFilter: "blur(4px)",
+                    transition: "transform 0.3s",
+                  }}
+                  className="hover:scale-110 hover:rotate-12"
+                  >
+                    <Icon style={{ width: "2rem", height: "2rem", color: "white" }} />
                   </div>
                 </a>
+
                 {/* Content */}
-                <div className="p-8 space-y-4">
-                  <h3 className="font-display font-black text-3xl text-white uppercase">
-                    {service.title}
-                  </h3>
-                  <p className="text-white/80 font-body text-base leading-relaxed">
-                    {service.description}
-                  </p>
+                <div style={{ padding: "2rem", paddingTop: "20rem", color: "white" }}>
+                  <h3 style={{ fontSize: "1.75rem", fontWeight: "900", textTransform: "uppercase" }}>{service.title}</h3>
+                  <p style={{ marginTop: "1rem", opacity: 0.8 }}>{service.description}</p>
                 </div>
-                {/* Hover Border Effect */}
-                <div className="absolute inset-0 border-4 border-lime-neon opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-300 pointer-events-none"></div>
               </div>
             );
           })}
         </div>
       </div>
 
-      {/* Modal Popup for full image with zoom animation */}
+      {/* Modal for enlarged image */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) closeModal();
+          ref={modalRef}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.8)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 999,
+            padding: "1rem",
+            transition: "opacity 0.3s",
           }}
-          role="dialog"
-          aria-modal="true"
+          onClick={handleOutsideClick}
         >
-          {/* Close Button */}
+          {/* Close button */}
           <button
             onClick={closeModal}
-            className="absolute -top-12 right-0 text-white hover:text-lime-neon transition-colors duration-300 z-50"
-            aria-label="Close modal"
+            style={{
+              position: "absolute",
+              top: "1rem",
+              right: "1rem",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "white",
+              zIndex: 1000,
+            }}
+            aria-label="Close"
           >
             <X size={32} />
           </button>
 
-          {/* Fullscreen image with zoom animation */}
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-            <div
-              className={`transition-transform duration-300`}
+          {/* Image with zoom animation */}
+          <div
+            style={{
+              transition: "transform 0.3s",
+              transform: zoomIn ? "scale(1)" : "scale(0.95)",
+              maxWidth: "90%",
+              maxHeight: "90%",
+            }}
+          >
+            <img
+              src={selectedImage}
+              alt="Enlarged"
               style={{
-                transform: zoomIn ? "scale(1)" : "scale(0.95)",
+                maxWidth: "100%",
+                maxHeight: "100%",
+                width: "auto",
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
               }}
-            >
-              <img
-                src={selectedImage}
-                alt="Enlarged view"
-                style={{
-                  maxWidth: "90%",
-                  maxHeight: "90%",
-                  width: "auto",
-                  height: "auto",
-                }}
-                className="object-contain"
-              />
-            </div>
+            />
           </div>
-
-          {/* Hint text */}
-          <p className="absolute bottom-4 w-full text-center text-white/50 text-sm">
-            Press ESC or click outside to close
-          </p>
         </div>
       )}
     </section>
   );
-};
+}
 
 export default ServicesSection;
