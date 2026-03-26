@@ -198,7 +198,7 @@ const ServicesSection = () => {
               className="max-w-none max-h-none"
               style={{
                 display: "block",
-                margin: "auto".
+               
               }}
             />
           </div>
